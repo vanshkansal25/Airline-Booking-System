@@ -1,0 +1,25 @@
+{
+  "name": "airline_backend",
+  "version": "1.0.0",
+  "description": "AIRLINE BOOKING SYSTEM BACKEND",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx nodemon src/index.js"
+  },
+  "keywords": [
+    "AIRLINE",
+    "BOOKING",
+    "SYSTEM",
+    "BACKEND"
+  ],
+  "author": "VANSH KANSAL",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "http-status-codes": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
