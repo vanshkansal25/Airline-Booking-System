@@ -7,13 +7,8 @@ class CrudRepository{
         this.model = model;
     }
     async create(data){
-        try {
             const response = await this.model.create(data);
             return response; 
-        } catch (error) {
-            Logger.error("SOMETHING WENT WRONG IN CRUD REPO : CREATE");
-            throw error; 
-        }
     }
     async destroy(data){
         try {
