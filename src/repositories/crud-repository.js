@@ -1,6 +1,8 @@
 
 const { where } = require('sequelize');
-const {Logger} =  require('../config')
+const {Logger} =  require('../config');
+const AppError = require('../utils/errors/app-error');
+const { StatusCodes } = require('http-status-codes');
 
 class CrudRepository{
     constructor(model){
@@ -11,57 +13,41 @@ class CrudRepository{
             return response; 
     }
     async destroy(data){
-        try {
             const response = await this.model.destroy({
                 where:{
                     id:data
                 }
             });
             return response; 
-        } catch (error) {
-            Logger.error("SOMETHING WENT WRONG IN CRUD REPO : DESTROY ");
-            throw error; 
-        }
     }
     async get(data){
-        try {
             const response = await this.model.findByPk({
                 where:{
                     id:data
                 }
             });
+            if(!response){
+                throw new AppError('Not able to find the resource',StatusCodes.NOT_FOUND)
+            }
             return response; 
-        } catch (error) {
-            Logger.error("SOMETHING WENT WRONG IN CRUD REPO : GET ");
-            throw error; 
-        }
     }
     async getAll(){
-        try {
             const response = await this.model.findAll({
                 where:{
                     id:data
                 }
             });
             return response; 
-        } catch (error) {
-            Logger.error("SOMETHING WENT WRONG IN CRUD REPO : GETALL ");
-            throw error; 
-        }
     }
+    
     // data must be object in update functionality
     async update(id,data){
-        try {
             const response = await this.model.update(data,{
                 where:{
                     id:id
                 }
             });
             return response; 
-        } catch (error) {
-            Logger.error("SOMETHING WENT WRONG IN CRUD REPO : UPDATE ");
-            throw error; 
-        }
     }
 }
 
