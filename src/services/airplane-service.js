@@ -34,14 +34,25 @@ async function getAirplane(id){
         const airplanes = await airplaneRespository.get(id);
         return airplanes;
     } catch (error) {
+         throw new AppError('Cannot Fetch data of all the airplane',StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+}
+async function destroyAirplane(id){
+    try {
+        const response = await airplaneRespository.destroy(id);
+        return response;
+    } catch (error) {
         if(error.StatusCodes == StatusCodes.NOT_FOUND){
-            throw new AppError('The airplane you requested does not exists',error.StatusCodes)
+            throw new AppError('The airplane you requested to delete does not exists',error.StatusCodes)
         }
         throw new AppError('Cannot Fetch data of all the airplane',StatusCodes.INTERNAL_SERVER_ERROR)
     }
 }
+
+//TODO: CREATE UPDATE API
 module.exports = {
     createAirplane,
     getAirplanes,
-    getAirplane
+    getAirplane,
+    destroyAirplane
 }
