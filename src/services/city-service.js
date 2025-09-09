@@ -20,6 +20,7 @@ async function createCity(data) {
 
     }
 }
+// TODO : to implement delete and update city api
 
 module.exports = {
     createCity

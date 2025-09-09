@@ -11,8 +11,11 @@ app.use(express.urlencoded({
 
 app.use("/api",apiRoutes);
 
-app.listen(ServerConfig.PORT,()=>{
+app.listen(ServerConfig.PORT,async()=>{
     console.log(`Successfully listening at Port ${PORT}`)
+
+    const {City,Airport} = require('./models')
+    const city = await City.findByPk()
 })
 
 
